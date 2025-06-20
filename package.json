@@ -1,0 +1,26 @@
+{
+  "name": "@esm.sh/oxide-wasm",
+  "version": "0.1.0",
+  "description": "A wasm build of the tailwindcss oxide",
+  "type": "module",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "./index.mjs",
+    "./index.d.ts",
+    "./pkg/oxide_wasm.js",
+    "./pkg/oxide_wasm_bg.wasm"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run test",
+    "build": "wasm-pack build --target web --no-pack --release",
+    "test": "npm run build && node test.mjs",
+    "fmt": "cargo fmt --all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esm-dev/oxide.git"
+  },
+  "license": "MIT"
+}
