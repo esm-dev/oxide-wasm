@@ -1,0 +1,21 @@
+[package]
+name = "oxide-wasm"
+version = "0.0.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+tailwindcss-oxide = { git = "https://github.com/tailwindlabs/tailwindcss.git", version = "0.1.0" }
+wasm-bindgen = { version = "0.2.100" }
+
+[profile.release]
+# link time optimization using using whole-program analysis
+lto = true
+# optimization for size (more aggressive)
+opt-level = 'z'
+# less code to include into binary
+panic = 'abort'
+# optimization over all codebase (better optimization, slower build)
+codegen-units = 1
