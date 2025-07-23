@@ -1,8 +1,9 @@
 {
   "name": "@esm.sh/oxide-wasm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A wasm build of the tailwindcss oxide",
   "type": "module",
+  "main": "./index.mjs",
   "module": "./index.mjs",
   "types": "./index.d.ts",
   "sideEffects": false,
