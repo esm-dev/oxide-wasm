@@ -1,8 +1,8 @@
-import initWasm, { initSync as initWasmSync, extract as wasmExtract} from "./pkg/oxide_wasm.js";
+import initWasm, { extract as wasmExtract, initSync as initWasmSync } from "./pkg/oxide_wasm.js";
 
 export function extract(input) {
-  if (typeof input !== "string" || input === "") {
-    throw new Error("filename is required");
+  if (typeof input !== "string") {
+    throw new TypeError("input must be a non-empty string");
   }
   return wasmExtract(input);
 }
