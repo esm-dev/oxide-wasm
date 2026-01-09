@@ -7,8 +7,8 @@ edition = "2024"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-tailwindcss-oxide = { git = "https://github.com/tailwindlabs/tailwindcss.git", version = "0.1.0" }
-wasm-bindgen = { version = "0.2.104" }
+tailwindcss-oxide = { git = "https://github.com/tailwindlabs/tailwindcss.git", tag = "v4.1.18" }
+wasm-bindgen = { version = "0.2.106" }
 
 [profile.release]
 # link time optimization using using whole-program analysis
