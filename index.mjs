@@ -13,9 +13,18 @@ export function initSync(module) {
 
 export async function init(module_or_path) {
   const importUrl = import.meta.url;
-  if (!module_or_path && importUrl.startsWith("file://") && globalThis.Deno) {
-    const wasmUrl = new URL("./pkg/oxide_wasm_bg.wasm", importUrl);
-    const wasmBytes = await Deno.readFile(wasmUrl);
+  if (!module_or_path && importUrl.startsWith("file://")) {
+    const { pathname: filename } = new URL("./pkg/oxide_wasm_bg.wasm", importUrl);
+    let wasmBytes;
+    if (globalThis.Deno) {
+      wasmBytes = await Deno.readFile(filename);
+    } else if (globalThis.Bun) {
+      wasmBytes = await Bun.file(filename).arrayBuffer();
+    } else {
+      const moduleSpecifier = `node:fs/promises`;
+      const fsPromise = await import(moduleSpecifier); // <- use variable to skip deno-lsp analyzing
+      wasmBytes = await fsPromise.readFile(filename);
+    }
     initWasmSync({ module: wasmBytes });
     return;
   }
