@@ -5,7 +5,7 @@ A wasm build for [tailwindcss-oxide](https://github.com/tailwindlabs/tailwindcss
 ## Usage
 
 ```js
-import init, { extract } from "https://esm.sh/@esm.sh/oxide-wasm";
+import init, { extract } from "https://esm.sh/oxide-wasm";
 
 // load oxide-wasm_bg.wasm
 await init();
