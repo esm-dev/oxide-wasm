@@ -12,5 +12,5 @@ pub fn extract(input: &str) -> Vec<JsValue> {
             Extracted::CssVariable(bytes) => bytes,
         })
         .map(|b| JsValue::from_str(unsafe { from_utf8_unchecked(b) }))
-        .collect::<Vec<_>>()
+        .collect()
 }
