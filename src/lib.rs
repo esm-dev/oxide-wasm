@@ -8,9 +8,10 @@ pub fn extract(input: &str) -> Vec<JsValue> {
         .extract()
         .into_iter()
         .map(|e| match e {
-            Extracted::Candidate(bytes) => bytes,
-            Extracted::CssVariable(bytes) => bytes,
+            Extracted::Candidate(bytes) => JsValue::from_str(unsafe { from_utf8_unchecked(bytes) }),
+            Extracted::CssVariable(bytes) => {
+                JsValue::from_str(unsafe { from_utf8_unchecked(bytes) })
+            }
         })
-        .map(|b| JsValue::from_str(unsafe { from_utf8_unchecked(b) }))
         .collect()
 }
